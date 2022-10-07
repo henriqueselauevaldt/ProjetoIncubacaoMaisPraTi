@@ -94,6 +94,7 @@ public class PessoaService {
             Pessoa pessoa = new Pessoa(nome, telefone, dataNascimento, dataCadastro, dataAlteracao, notaFinalCurso );
             this.repository.salvar(pessoa);
             System.out.println("PESSOA CADASTRADA COM SUCESSO !");
+            System.out.println("PESSOA CADASTRADA COM SUCESSO !");
         }
         else
         {
