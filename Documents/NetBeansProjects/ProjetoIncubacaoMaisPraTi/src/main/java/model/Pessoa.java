@@ -13,9 +13,9 @@ import util.Contador;
  */
 public class Pessoa implements Banco{
     
-    private Integer id;
-    private String nome;
-    private String telefone;
+    public Integer id;
+    public String nome;
+    public String telefone;
     public Date dataDeNascimento;
     public Date dataDeCadastro;
     public Date dataUltimaAlteracao;

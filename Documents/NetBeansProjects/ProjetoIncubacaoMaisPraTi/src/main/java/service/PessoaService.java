@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import model.Aluno;
 import model.Pessoa;
 import repository.Repository;
 
@@ -22,9 +23,12 @@ import repository.Repository;
 public class PessoaService {
     
     Repository <Pessoa> repository = new Repository<>();
+    //Repository <Aluno> repository = new Repository<>();
     GetDate getDate = new GetDate();
     Scanner sc;
     DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
+    //AlunoService alunoService = new AlunoService();
+    AlunoService alunoService;
     
  public PessoaService (Scanner sc) throws ParseException    
 
@@ -73,9 +77,15 @@ public class PessoaService {
                 System.out.println("CADASTRA ALUNO:");
                 System.out.println("DIGITE A NOTA FINAL DO CURSO:");
                 notaFinalCurso = sc.nextDouble();
+                
+                //alunoService.cadastrarAluno(nome, telefone, dataNascimento, dataCadastro, dataAlteracao, notaFinalCurso);
+                Aluno aluno = new Aluno(nome, telefone, dataNascimento, dataCadastro, dataAlteracao, notaFinalCurso);
+                this.repository.salvar(aluno);
+                //alunoService.cadastrarAluno(aluno);
                 System.out.println("ALUNO CADASTRADO COM SUCESSO!");
                 testeNotaFinalCurso=true;
                 break;
+                
                 case 2:
                 Pessoa pessoa = new Pessoa(nome, telefone, dataNascimento, dataCadastro, dataAlteracao, notaFinalCurso );
                 this.repository.salvar(pessoa);

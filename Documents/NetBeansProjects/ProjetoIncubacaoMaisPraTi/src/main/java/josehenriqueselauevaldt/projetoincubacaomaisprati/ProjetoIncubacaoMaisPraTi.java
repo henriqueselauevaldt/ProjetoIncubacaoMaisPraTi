@@ -9,6 +9,7 @@ import java.text.ParseException;
 import java.util.Scanner;
 import menu.Menu;
 import model.Pessoa;
+import service.AlunoService;
 import service.GetDate;
 import service.PessoaService;
 
@@ -23,6 +24,7 @@ public class ProjetoIncubacaoMaisPraTi {
         Scanner sc = new Scanner (System.in);
         
         PessoaService pessoaService = new PessoaService(sc);
+        AlunoService alunoService = new AlunoService(sc);
         GetDate getDate = new GetDate();
         
         getDate.getDate();
@@ -43,6 +45,7 @@ public class ProjetoIncubacaoMaisPraTi {
                 case 2:    
                    System.out.println("MOSTRAR TODAS AS PESSOAS");
                    pessoaService.buscarTodasPessoas();
+                   alunoService.buscarTodasAlunos();
                    break;
                 
                 case 3:
