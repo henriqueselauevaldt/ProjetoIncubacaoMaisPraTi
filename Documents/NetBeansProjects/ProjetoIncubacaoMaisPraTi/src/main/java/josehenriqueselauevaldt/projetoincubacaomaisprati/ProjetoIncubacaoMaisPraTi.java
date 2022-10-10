@@ -37,7 +37,7 @@ public class ProjetoIncubacaoMaisPraTi {
            {
                case 1:
                     System.out.println("CADASTRAR UMA NOVA PESSOA");
-                    pessoaService.cadastrarPessoa();
+                    pessoaService.cadastrarPessoa();    
                     break;
                                  
                 case 2:    
