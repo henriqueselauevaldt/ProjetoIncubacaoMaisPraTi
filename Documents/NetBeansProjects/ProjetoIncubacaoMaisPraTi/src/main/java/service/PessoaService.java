@@ -23,13 +23,11 @@ import repository.Repository;
 public class PessoaService {
     
     Repository <Pessoa> repository = new Repository<>();
-    //Repository <Aluno> repository = new Repository<>();
     GetDate getDate = new GetDate();
     Scanner sc;
     DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
-    //AlunoService alunoService = new AlunoService();
     AlunoService alunoService;
-    
+    AlunoService alunoService1 = new AlunoService(sc);
  public PessoaService (Scanner sc) throws ParseException    
 
    {
@@ -74,14 +72,10 @@ public class PessoaService {
             switch(opcao)
             {
                 case 1:
-                System.out.println("CADASTRA ALUNO:");
                 System.out.println("DIGITE A NOTA FINAL DO CURSO:");
                 notaFinalCurso = sc.nextDouble();
-                
-                //alunoService.cadastrarAluno(nome, telefone, dataNascimento, dataCadastro, dataAlteracao, notaFinalCurso);
                 Aluno aluno = new Aluno(nome, telefone, dataNascimento, dataCadastro, dataAlteracao, notaFinalCurso);
                 this.repository.salvar(aluno);
-                //alunoService.cadastrarAluno(aluno);
                 System.out.println("ALUNO CADASTRADO COM SUCESSO!");
                 testeNotaFinalCurso=true;
                 break;
@@ -109,16 +103,17 @@ public class PessoaService {
     
     public void atualizarPessoa() throws ParseException
     {
-        System.out.println("Digite o Id da Pessoa que deseja alterar");
+        System.out.println("Digite o Id deseja alterar");
         Integer id = sc.nextInt();
         Pessoa pessoaTeste = this.repository.buscarPorId(id);
+        
         if (pessoaTeste == null)
         {
-            System.out.println("PESSOA NAO ENCONTRADA");
+            System.out.println("REGISTRO NAO ENCONTRADO");
         }
-        else
+        else if(pessoaTeste.notaFinalCurso==null)
         {       
-        System.out.println("DIGITE SEI NOVO NOME: ");
+        System.out.println("DIGITE SEU NOVO NOME: ");
         sc.nextLine();
         String nome = sc.nextLine();
         System.out.println("DIGITE SEU NOVO TELEFONE: ");
@@ -131,6 +126,12 @@ public class PessoaService {
         Date dataAlteracao = formato.parse(dataA);
         Pessoa pessoa = new Pessoa(id, nome, telefone, dataNascimento, dataC, dataAlteracao);
         this.repository.alterarPorId(id, pessoa);
+        }
+        else if(pessoaTeste.notaFinalCurso!= null)
+        {
+            Date DataCadastroAluno = pessoaTeste.dataDeCadastro;
+            alunoService1.atualizarAluno(id, DataCadastroAluno);
+            
         }
     }
     

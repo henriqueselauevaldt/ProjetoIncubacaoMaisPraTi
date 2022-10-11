@@ -38,12 +38,10 @@ public class ProjetoIncubacaoMaisPraTi {
            switch(opcao1)
            {
                case 1:
-                    System.out.println("CADASTRAR UMA NOVA PESSOA");
                     pessoaService.cadastrarPessoa();    
                     break;
                                  
                 case 2:    
-                   System.out.println("MOSTRAR TODAS AS PESSOAS");
                    pessoaService.buscarTodasPessoas();
                    alunoService.buscarTodasAlunos();
                    break;
