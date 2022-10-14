@@ -7,6 +7,7 @@ package service;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
@@ -21,7 +22,6 @@ import repository.Repository;
 public class AlunoService {
     
    Repository <Aluno> repository = new Repository<>();
-   //Scanner sc = new Scanner(System.in);
    Scanner sc;
    GetDate getDate = new GetDate();
    DateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
@@ -45,8 +45,6 @@ public class AlunoService {
     public void atualizarAluno(Integer id, Date dataCadastroAluno) throws ParseException
     {
         Scanner scan = new Scanner(System.in);
-        //Aluno alunoTeste = this.repository.buscarPorId(id);
-        
         System.out.println("DIGITE SEU NOVO NOME: ");
         String nome = scan.nextLine();
         System.out.println("DIGITE SEU NOVO TELEFONE: ");
@@ -54,23 +52,19 @@ public class AlunoService {
         System.out.println("DIGITE SUA NOVA DATA DE NASCIMENTO: ");
         String dataN = scan.nextLine();
         Date dataNascimento = formato.parse(dataN);
-        //Date dataC = alunoTeste.getDataDeCadastro();
         Date dataC = dataCadastroAluno;
         String dataA = getDate.getDate();
         Date dataAlteracao = formato.parse(dataA);
         System.out.println("DIGITE SUA NOVA NOTA FINAL:");
         Double notaFinal = scan.nextDouble();
-        //System.out.println(id + nome + telefone + dataN + dataC + dataAlteracao + notaFinal);
-        
         Aluno aluno = new Aluno(id, nome, telefone, dataNascimento, dataC, dataAlteracao, notaFinal);
-        //alunoTeste = new Aluno(id, nome, telefone, dataNascimento, dataC, dataAlteracao, notaFinal);
-        //System.out.println(aluno);
-        System.out.println("###############");
-        System.out.println(aluno);
         this.repository.alterarPorId(id, aluno);
-        //this.repository.salvar(aluno);
-        
-        
     }
-    
-}
+    public void buscarTodosAlunosCadastrados()
+    {
+        List<Aluno> todosAlunos = repository.buscarTodos();
+        todosAlunos.stream().filter(v -> (v.notaFinalCurso != null))
+        .forEach(v -> System.out.println(v));
+      
+    }
+  }

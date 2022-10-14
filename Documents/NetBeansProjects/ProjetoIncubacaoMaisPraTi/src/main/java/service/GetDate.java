@@ -39,8 +39,5 @@ public class GetDate {
         } catch (DateTimeParseException e) {
             return false;
         } 
-  
-    
-}
-   
+    }
 }

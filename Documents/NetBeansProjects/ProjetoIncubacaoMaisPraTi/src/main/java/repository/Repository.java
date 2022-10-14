@@ -35,11 +35,12 @@ public class Repository <T extends Banco>{
         return this.bancoDeDados.values().stream().collect(Collectors.toList());
     }
     
+      
     public T buscarPorId(Integer Id)
     {
         return this.bancoDeDados.get(Id);
     }
-    
+        
     public void removerPorId(Integer Id)
     {
         this.bancoDeDados.remove(Id);

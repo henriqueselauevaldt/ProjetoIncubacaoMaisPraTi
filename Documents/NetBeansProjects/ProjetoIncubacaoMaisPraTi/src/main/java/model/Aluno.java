@@ -10,7 +10,7 @@ import java.util.Date;
  *
  * @author Prefeitura Mampituba
  */
-public class Aluno extends Pessoa implements Banco{
+public class Aluno extends Pessoa{
     
         public Aluno(String nome, String telefone, Date dataDeNascimento, Date dataDeCadastro, Date dataUltimaAlteracao, Double notaFinalCurso) 
         {
@@ -22,11 +22,12 @@ public class Aluno extends Pessoa implements Banco{
             this.id = id;
         }
 
-        @Override
+        
+    @Override
     public Integer getId() {
         return id;
     }
         
-
+    
     
 }

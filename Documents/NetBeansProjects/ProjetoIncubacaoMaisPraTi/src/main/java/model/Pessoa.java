@@ -55,8 +55,10 @@ public Pessoa(Integer id, String nome, String telefone, Date dataDeNascimento, D
     }
 
     @Override
-    public String toString() {
-        return " Id: = \n" + id + ", nome: " + nome + "telefone: " + telefone + "data nascimento:" + dataDeNascimento + ", dataDeCadastro: " + dataDeCadastro + ", dataUltimaAlteracao: " + dataUltimaAlteracao + ", notaFinalCurso: " + notaFinalCurso + '}';
+    public String toString() 
+    {
+        return " ID: " + id + "\n NOME: " + nome + "\n TELEFONE: " + telefone + "\n DATA DE NASCIMENTO: " + dataDeNascimento + "\n DATA DE CADASTRO: " + dataDeCadastro + "\n DATA DA ULTIMA ALTERACAO: " + dataUltimaAlteracao + "\n NOTA FINAL DO CURSO: " + notaFinalCurso;
+       
     }
 
     @Override

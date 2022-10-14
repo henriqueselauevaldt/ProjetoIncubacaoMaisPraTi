@@ -15,6 +15,7 @@ import java.util.Scanner;
 import model.Aluno;
 import model.Pessoa;
 import repository.Repository;
+import menu.Menu;
 
 /**
  *
@@ -64,10 +65,9 @@ public class PessoaService {
         Date dataCadastro = formato.parse(dataC);
         String dataA = getDate.getDate();
         Date dataAlteracao = formato.parse(dataA);
-        do{
-            System.out.println("DESEJA CADASTRAR UMA NOTA FINAL:");
-            System.out.println("1: SIM");
-            System.out.println("2: NAO");
+        do
+        {
+            Menu.menu3();
             int opcao = sc.nextInt();
             switch(opcao)
             {
@@ -92,13 +92,22 @@ public class PessoaService {
                 testeNotaFinalCurso=false;
                 break;
             }
-         }while(testeNotaFinalCurso==false);
+        }while(testeNotaFinalCurso==false);
     }
     
-    public void buscarTodasPessoas()
+    public void buscarTodosRegistros()
     {
         List<Pessoa> todasPessoas = repository.buscarTodos();
-        todasPessoas.stream().forEach(v -> System.out.println(v));
+        
+        if(todasPessoas.isEmpty())
+        {
+            System.out.println("NAO EXISTEM REGISTROS A SEREM EXIBIDOS");
+        }
+        else
+        {
+            todasPessoas.stream().forEach(v -> System.out.println(v));
+        }
+        
     }
     
     public void atualizarPessoa() throws ParseException
@@ -111,31 +120,45 @@ public class PessoaService {
         {
             System.out.println("REGISTRO NAO ENCONTRADO");
         }
-        else if(pessoaTeste.notaFinalCurso==null)
+        else if(pessoaTeste.getNotaFinalCurso()==null)
         {       
-        System.out.println("DIGITE SEU NOVO NOME: ");
-        sc.nextLine();
-        String nome = sc.nextLine();
-        System.out.println("DIGITE SEU NOVO TELEFONE: ");
-        String telefone = sc.nextLine();
-        System.out.println("DIGITE SUA NOVA DATA DE NASCIMENTO: ");
-        String dataN = sc.nextLine();
-        Date dataNascimento = formato.parse(dataN);
-        Date dataC = pessoaTeste.getDataDeCadastro();
-        String dataA = getDate.getDate();
-        Date dataAlteracao = formato.parse(dataA);
-        Pessoa pessoa = new Pessoa(id, nome, telefone, dataNascimento, dataC, dataAlteracao);
-        this.repository.alterarPorId(id, pessoa);
+            System.out.println("DIGITE SEU NOVO NOME: ");
+            sc.nextLine();
+            String nome = sc.nextLine();
+            System.out.println("DIGITE SEU NOVO TELEFONE: ");
+            String telefone = sc.nextLine();
+            System.out.println("DIGITE SUA NOVA DATA DE NASCIMENTO: ");
+            String dataN = sc.nextLine();
+            Date dataNascimento = formato.parse(dataN);
+            Date dataC = pessoaTeste.getDataDeCadastro();
+            String dataA = getDate.getDate();
+            Date dataAlteracao = formato.parse(dataA);
+            Pessoa pessoa = new Pessoa(id, nome, telefone, dataNascimento, dataC, dataAlteracao);
+            this.repository.alterarPorId(id, pessoa);
         }
-        else if(pessoaTeste.notaFinalCurso!= null)
+        else if(pessoaTeste.getNotaFinalCurso() != null)
         {
-            Date DataCadastroAluno = pessoaTeste.dataDeCadastro;
-            alunoService1.atualizarAluno(id, DataCadastroAluno);
-            
+            //Date DataCadastroAluno = pessoaTeste.dataDeCadastro;
+            //alunoService1.atualizarAluno(id, DataCadastroAluno);
+            System.out.println("DIGITE SEU NOVO NOME: ");
+            sc.nextLine();
+            String nome = sc.nextLine();
+            System.out.println("DIGITE SEU NOVO TELEFONE: ");
+            String telefone = sc.nextLine();
+            System.out.println("DIGITE SUA NOVA DATA DE NASCIMENTO: ");
+            String dataN = sc.nextLine();
+            Date dataNascimento = formato.parse(dataN);
+            Date dataC = pessoaTeste.dataDeCadastro;
+            String dataA = getDate.getDate();
+            Date dataAlteracao = formato.parse(dataA);
+            System.out.println("DIGITE SUA NOVA NOTA FINAL:");
+            Double notaFinal = sc.nextDouble();
+            Aluno aluno = new Aluno(id, nome, telefone, dataNascimento, dataC, dataAlteracao, notaFinal);
+            this.repository.alterarPorId(id, aluno);
         }
     }
     
-    public void removerVeiculo() 
+    public void removerRegistro() 
     {
         boolean testaRemover = true;
         do
@@ -155,5 +178,30 @@ public class PessoaService {
                 testaRemover=true;
             }
         }while(testaRemover==false);
-    }   
+    }
+    
+    public void buscarTodasPessoas()
+    {
+        List<Pessoa> todasPessoas = repository.buscarTodos();
+        todasPessoas.stream().filter(v -> (v.notaFinalCurso == null))
+        .forEach(v -> System.out.println(v));
+        
+        //if(todasPessoas.isEmpty())
+        //{
+          //  System.out.println("NAO EXISTEM REGISTROS A SEREM EXIBIDOS");
+        //}
+       // else
+      //  {
+            //todasPessoas.stream().forEach(v -> System.out.println(v));
+      //  }
+      
+    }
+    
+    public void buscarTodosAlunos()
+    {
+        List<Pessoa> todosAlunos = repository.buscarTodos();
+        todosAlunos.stream().filter(v -> (v.notaFinalCurso != null))
+        .forEach(v -> System.out.println(v));
+      
+    }
 }
