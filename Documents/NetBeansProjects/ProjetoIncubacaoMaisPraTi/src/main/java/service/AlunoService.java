@@ -4,6 +4,7 @@
  */
 package service;
 
+import util.GetDate;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -65,6 +66,5 @@ public class AlunoService {
         List<Aluno> todosAlunos = repository.buscarTodos();
         todosAlunos.stream().filter(v -> (v.notaFinalCurso != null))
         .forEach(v -> System.out.println(v));
-      
     }
   }

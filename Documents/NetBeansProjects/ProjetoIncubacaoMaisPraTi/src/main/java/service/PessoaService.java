@@ -4,6 +4,7 @@
  */
 package service;
 
+import util.GetDate;
 import static java.lang.System.in;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -185,16 +186,6 @@ public class PessoaService {
         List<Pessoa> todasPessoas = repository.buscarTodos();
         todasPessoas.stream().filter(v -> (v.notaFinalCurso == null))
         .forEach(v -> System.out.println(v));
-        
-        //if(todasPessoas.isEmpty())
-        //{
-          //  System.out.println("NAO EXISTEM REGISTROS A SEREM EXIBIDOS");
-        //}
-       // else
-      //  {
-            //todasPessoas.stream().forEach(v -> System.out.println(v));
-      //  }
-      
     }
     
     public void buscarTodosAlunos()
@@ -202,6 +193,5 @@ public class PessoaService {
         List<Pessoa> todosAlunos = repository.buscarTodos();
         todosAlunos.stream().filter(v -> (v.notaFinalCurso != null))
         .forEach(v -> System.out.println(v));
-      
     }
 }

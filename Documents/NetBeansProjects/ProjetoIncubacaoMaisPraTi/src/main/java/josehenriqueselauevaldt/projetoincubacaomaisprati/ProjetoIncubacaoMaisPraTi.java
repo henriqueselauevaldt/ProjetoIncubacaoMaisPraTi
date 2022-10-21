@@ -11,7 +11,7 @@ import java.util.Scanner;
 import menu.Menu;
 import model.Pessoa;
 import service.AlunoService;
-import service.GetDate;
+import util.GetDate;
 import service.PessoaService;
 
 /**
